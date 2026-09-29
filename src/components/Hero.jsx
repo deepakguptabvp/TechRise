@@ -170,7 +170,7 @@ const Hero = ({ onSelectService }) => {
               onClick={() => scrollToSection("contact")}
               className="w-full sm:w-auto inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-semibold text-base px-8 py-3.5 rounded-xl shadow-lg shadow-blue-600/25 hover:shadow-blue-600/35 transition-all duration-300 transform hover:-translate-y-0.5 cursor-pointer"
             >
-              <span>Discuss Your Project</span>
+              <span>Start Your Project</span>
               <ArrowRight className="w-4 h-4" />
             </button>
 

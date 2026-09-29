@@ -30,7 +30,7 @@ const Services = ({ onSelectService }) => {
   };
 
   return (
-    <section id="services" className="py-20 relative border-t border-slate-200/80">
+    <section id="services" className="py-20 relative border-t border-slate-200/80 bg-gray-100">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -53,7 +53,7 @@ const Services = ({ onSelectService }) => {
         </div>
 
         {/* 4 Core Service Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 p-10">
           {servicesData.map((service) => {
             const Icon = iconMap[service.iconName] || Globe;
 
@@ -103,7 +103,7 @@ const Services = ({ onSelectService }) => {
                     onClick={() => handleDiscussService(service.title)}
                     className="inline-flex items-center gap-1.5 text-xs font-semibold text-blue-700 hover:text-white bg-blue-50 hover:bg-blue-600 border border-blue-200 hover:border-blue-600 px-3.5 py-2 rounded-xl transition-all duration-200 cursor-pointer shadow-xs"
                   >
-                    <span>Discuss Service</span>
+                    <span>{service.ctaText || "Inquire Service"}</span>
                     <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>

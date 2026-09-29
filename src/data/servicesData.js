@@ -5,6 +5,7 @@ export const servicesData = [
     description: "Complete multi-page websites for businesses, startups, cafes, and local brands to showcase their work and get new customers.",
     iconName: "Globe",
     estimatedTimeline: "2 - 3 Weeks",
+    ctaText: "Build Business Website",
     keyDeliverables: [
       "Multi-page setup (Home, About, Services, Contact)",
       "100% Mobile & Tablet Responsive",
@@ -18,6 +19,7 @@ export const servicesData = [
     description: "Focused single-page websites built for marketing campaigns, product launches, and quick lead generation.",
     iconName: "Zap",
     estimatedTimeline: "4 - 7 Days",
+    ctaText: "Launch Landing Page",
     keyDeliverables: [
       "High-Converting Single Page",
       "Lead Capture Form & Direct WhatsApp Chat",
@@ -31,6 +33,7 @@ export const servicesData = [
     description: "Modern, intuitive user interface and experience design in Figma tailored for conversions and high brand recall.",
     iconName: "Palette",
     estimatedTimeline: "1 - 2 Weeks",
+    ctaText: "Request UI/UX Design",
     keyDeliverables: [
       "Custom Figma UI/UX Prototypes",
       "Mobile-First Wireframes & Screen Flow",
@@ -44,6 +47,7 @@ export const servicesData = [
     description: "Upgrade your slow, outdated, or poorly functioning website into a modern, fast, and attractive digital experience.",
     iconName: "Sparkles",
     estimatedTimeline: "1 - 2 Weeks",
+    ctaText: "Upgrade My Website",
     keyDeliverables: [
       "Modern UI/UX Visual Makeover",
       "Significant Speed & Performance Boost",
@@ -51,17 +55,17 @@ export const servicesData = [
       "Clearer Content Flow & Better Layout"
     ]
   },
-  {
-    id: "maintenance-support",
-    title: "Maintenance & Support",
-    description: "Regular updates, bug fixes, image/text refreshes, and technical support to keep your site running smoothly.",
-    iconName: "ShieldCheck",
-    estimatedTimeline: "Monthly Plan",
-    keyDeliverables: [
-      "Regular Content & Image Updates",
-      "Speed Checks & Security Monitoring",
-      "Quick Bug Fixes & Technical Help",
-      "Direct WhatsApp Priority Communication"
-    ]
-  }
+  // {
+  //   id: "maintenance-support",
+  //   title: "Maintenance & Support",
+  //   description: "Regular updates, bug fixes, image/text refreshes, and technical support to keep your site running smoothly.",
+  //   iconName: "ShieldCheck",
+  //   estimatedTimeline: "Monthly Plan",
+  //   keyDeliverables: [
+  //     "Regular Content & Image Updates",
+  //     "Speed Checks & Security Monitoring",
+  //     "Quick Bug Fixes & Technical Help",
+  //     "Direct WhatsApp Priority Communication"
+  //   ]
+  // }
 ];

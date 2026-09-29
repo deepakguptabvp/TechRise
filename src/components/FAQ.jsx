@@ -99,10 +99,10 @@ const FAQ = () => {
             href={siteConfig.contact.whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition-all shrink-0 shadow-xs"
+            className="inline-flex items-center gap-2 bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-4 py-2.5 rounded-xl transition-all shrink-0 shadow-xs cursor-pointer"
           >
             <MessageSquare className="w-4 h-4" />
-            <span>Chat on WhatsApp</span>
+            <span>Ask a Question on WhatsApp</span>
           </a>
         </div>
 

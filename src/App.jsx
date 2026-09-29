@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Services from "./components/Services";
+import IdeaSolutionBanner from "./components/IdeaSolutionBanner";
 import WhyChooseUs from "./components/WhyChooseUs";
 import Portfolio from "./components/Portfolio";
 import AboutFounder from "./components/AboutFounder";
@@ -34,6 +35,7 @@ function App() {
       <main className="flex-1">
         <Hero onSelectService={handleSelectService} />
         <Services onSelectService={handleSelectService} />
+        <IdeaSolutionBanner />
         <WhyChooseUs />
         <Portfolio />
         <AboutFounder />
