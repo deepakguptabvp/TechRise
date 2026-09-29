@@ -10,12 +10,22 @@ const WhatsAppFloatingBtn = () => {
     <div className="fixed bottom-6 right-6 z-40 flex flex-col items-end gap-2">
       {/* Tooltip bubble */}
       {showTooltip && (
-        <div className="hidden sm:flex items-center gap-2 bg-slate-900/95 backdrop-blur-md border border-slate-700 text-slate-200 text-xs px-3 py-2 rounded-xl shadow-xl animate-in fade-in slide-in-from-bottom-2 duration-300">
-          <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping"></span>
-          <span>Chat directly</span>
+        <div className="hidden sm:flex items-center gap-2 bg-white/95 backdrop-blur-md border border-slate-200 text-slate-800 text-xs px-3.5 py-2 rounded-xl shadow-xl shadow-slate-300/60 animate-in fade-in slide-in-from-bottom-2 duration-300">
+          <span className="relative flex h-2 w-2 shrink-0">
+            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+            <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+          </span>
+          <a
+            href={siteConfig.contact.whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-medium text-slate-800 hover:text-emerald-600 transition-colors"
+          >
+            Chat directly with us!
+          </a>
           <button
             onClick={() => setShowTooltip(false)}
-            className="text-slate-400 hover:text-white p-0.5 ml-1"
+            className="text-slate-400 hover:text-slate-700 p-0.5 ml-1 transition-colors cursor-pointer"
             aria-label="Dismiss tooltip"
           >
             <X className="w-3 h-3" />

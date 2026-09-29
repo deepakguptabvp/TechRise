@@ -50,11 +50,11 @@ const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
   };
 
   return (
-    <footer className="bg-[#070B14] text-slate-400 border-t border-slate-800/80 pt-16 pb-12 relative overflow-hidden">
-      {/* Subtle bottom lighting */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-32 bg-blue-600/5 blur-[120px] pointer-events-none" />
+    <footer className="bg-slate-950 text-slate-400 border-t border-slate-800/80 pt-16 pb-12 relative overflow-hidden">
+      {/* Ambient background glow accent */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[250px] bg-gradient-to-b from-blue-600/10 via-cyan-500/5 to-transparent blur-[120px] pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Main Footer Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-14 border-b border-slate-800/80">
@@ -67,12 +67,12 @@ const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
                 e.preventDefault();
                 scrollToTop();
               }}
-              className="flex items-center gap-3 group"
+              className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg p-1"
             >
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-blue-500 to-cyan-400 p-[1.5px] shadow-md shadow-blue-500/20">
-                <div className="w-full h-full bg-[#0B1220] rounded-[10px] flex items-center justify-center">
+              <div className="w-10 h-10 rounded-xl bg-linear-to-tr from-blue-600 via-blue-500 to-cyan-500 p-[1.5px] shadow-sm shadow-blue-500/30">
+                <div className="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center">
                   <div className="flex items-end gap-1">
-                    <span className="w-1.5 h-3 bg-blue-500/60 rounded-t-sm"></span>
+                    <span className="w-1.5 h-3 bg-blue-400 rounded-t-sm"></span>
                     <span className="w-1.5 h-5 bg-blue-500 rounded-t-sm"></span>
                     <span className="w-1.5 h-7 bg-cyan-400 rounded-t-sm"></span>
                   </div>
@@ -81,37 +81,37 @@ const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
               <div className="flex flex-col">
                 <span className="text-xl font-extrabold tracking-tight text-white flex items-center gap-1.5">
                   TechRise
-                  <span className="text-cyan-400 font-black">.</span>
+                  <span className="text-blue-500 font-black">.</span>
                 </span>
-                <span className="text-[10px] tracking-wider uppercase font-medium text-slate-400">
+                <span className="text-[10px] tracking-wider uppercase font-semibold text-slate-400">
                   Digital Studio
                 </span>
               </div>
             </a>
 
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-sm">
+            <p className="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
               {siteConfig.tagline} — Independent web development and frontend architecture studio delivering high-performance, conversion-focused websites for startups and businesses worldwide.
             </p>
 
             {/* Live IST Status Box */}
-            <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-300 font-mono">
+            <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-xl bg-slate-900/90 border border-slate-800 text-xs text-slate-300 font-mono shadow-xs">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
               <span>IST: {istTime || "Loading..."}</span>
-              <span className="text-slate-500">•</span>
+              <span className="text-slate-700">•</span>
               <span className="text-slate-400">Noida, India</span>
             </div>
           </div>
 
           {/* Col 2: Services Quick Links */}
           <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white">
               Services
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm">
               <li>
                 <button
                   onClick={() => handleServiceClick("Business Website Development")}
-                  className="hover:text-cyan-400 transition-colors text-left cursor-pointer"
+                  className="hover:text-white transition-colors text-left cursor-pointer"
                 >
                   Business Website Development
                 </button>
@@ -119,7 +119,7 @@ const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
               <li>
                 <button
                   onClick={() => handleServiceClick("Landing Page Development")}
-                  className="hover:text-cyan-400 transition-colors text-left cursor-pointer"
+                  className="hover:text-white transition-colors text-left cursor-pointer"
                 >
                   Landing Page Development
                 </button>
@@ -127,7 +127,7 @@ const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
               <li>
                 <button
                   onClick={() => handleServiceClick("Website Redesign & Modernization")}
-                  className="hover:text-cyan-400 transition-colors text-left cursor-pointer"
+                  className="hover:text-white transition-colors text-left cursor-pointer"
                 >
                   Website Redesign & Modernization
                 </button>
@@ -135,7 +135,7 @@ const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
               <li>
                 <button
                   onClick={() => handleServiceClick("Website Maintenance & Support")}
-                  className="hover:text-cyan-400 transition-colors text-left cursor-pointer"
+                  className="hover:text-white transition-colors text-left cursor-pointer"
                 >
                   Website Maintenance & Support
                 </button>
@@ -145,14 +145,14 @@ const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
 
           {/* Col 3: Navigation */}
           <div className="lg:col-span-2 space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white">
               Company
             </h4>
             <ul className="space-y-2.5 text-xs sm:text-sm">
               <li>
                 <button
                   onClick={() => scrollToSection("portfolio")}
-                  className="hover:text-cyan-400 transition-colors cursor-pointer"
+                  className="hover:text-white transition-colors cursor-pointer"
                 >
                   Portfolio
                 </button>
@@ -160,7 +160,7 @@ const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
               <li>
                 <button
                   onClick={() => scrollToSection("why-us")}
-                  className="hover:text-cyan-400 transition-colors cursor-pointer"
+                  className="hover:text-white transition-colors cursor-pointer"
                 >
                   Why TechRise
                 </button>
@@ -168,7 +168,7 @@ const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
               <li>
                 <button
                   onClick={() => scrollToSection("about")}
-                  className="hover:text-cyan-400 transition-colors cursor-pointer"
+                  className="hover:text-white transition-colors cursor-pointer"
                 >
                   About Founder
                 </button>
@@ -176,7 +176,7 @@ const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
               <li>
                 <button
                   onClick={() => scrollToSection("faq")}
-                  className="hover:text-cyan-400 transition-colors cursor-pointer"
+                  className="hover:text-white transition-colors cursor-pointer"
                 >
                   FAQ
                 </button>
@@ -186,15 +186,15 @@ const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
 
           {/* Col 4: Contact & Socials */}
           <div className="lg:col-span-3 space-y-4">
-            <h4 className="text-xs font-bold uppercase tracking-wider text-slate-200">
+            <h4 className="text-xs font-bold uppercase tracking-wider text-white">
               Direct Contact
             </h4>
             <div className="space-y-2.5 text-xs">
               <a
                 href={`mailto:${siteConfig.contact.email}`}
-                className="flex items-center gap-2 hover:text-cyan-400 transition-colors break-all"
+                className="flex items-center gap-2 text-slate-300 hover:text-blue-400 transition-colors break-all"
               >
-                <Mail className="w-4 h-4 text-cyan-400 shrink-0" />
+                <Mail className="w-4 h-4 text-blue-400 shrink-0" />
                 <span>{siteConfig.contact.email}</span>
               </a>
               <a
@@ -214,7 +214,7 @@ const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
                 href={siteConfig.founder.github}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors"
+                className="p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 hover:border-slate-700 transition-colors shadow-xs"
                 aria-label="GitHub profile"
               >
                 <GithubIcon className="w-4 h-4" />
@@ -223,7 +223,7 @@ const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
                 href={siteConfig.founder.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors"
+                className="p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 hover:border-slate-700 transition-colors shadow-xs"
                 aria-label="LinkedIn profile"
               >
                 <LinkedinIcon className="w-4 h-4" />
@@ -232,7 +232,7 @@ const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
                 href={siteConfig.contact.whatsappUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-emerald-400 hover:text-emerald-300 border border-slate-800 transition-colors"
+                className="p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-emerald-400 hover:text-emerald-300 border border-slate-800 hover:border-emerald-800/60 transition-colors shadow-xs"
                 aria-label="WhatsApp profile"
               >
                 <WhatsAppIcon className="w-4 h-4" />
@@ -243,21 +243,21 @@ const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
         </div>
 
         {/* Bottom Copyright & Legal Links */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-400">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
           <div>
-            © {currentYear} <strong>TechRise</strong>. Founded & Operated by Deepak Gupta. All rights reserved.
+            © {currentYear} <strong className="text-slate-300">TechRise</strong>. Founded & Operated by Deepak Gupta. All rights reserved.
           </div>
 
           <div className="flex items-center gap-6">
             <button
               onClick={onOpenPrivacy}
-              className="hover:text-slate-200 transition-colors cursor-pointer"
+              className="text-slate-400 hover:text-white transition-colors cursor-pointer"
             >
               Privacy Policy
             </button>
             <button
               onClick={onOpenTerms}
-              className="hover:text-slate-200 transition-colors cursor-pointer"
+              className="text-slate-400 hover:text-white transition-colors cursor-pointer"
             >
               Terms of Engagement
             </button>
@@ -265,7 +265,7 @@ const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
             {/* Back to Top */}
             <button
               onClick={scrollToTop}
-              className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 transition-colors flex items-center gap-1.5 cursor-pointer"
+              className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 hover:border-slate-700 transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs"
               aria-label="Back to top"
             >
               <span>Top</span>

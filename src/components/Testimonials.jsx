@@ -1,103 +1,150 @@
-import React from "react";
-import { verifiedTestimonials, clientCommitmentPoints } from "../data/testimonialsData";
-import {
-  MessageSquareQuote,
-  ShieldCheck,
-  Star,
-  Quote,
-  Sparkles,
-  CheckCircle2,
-  Clock
-} from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { Quote, Star, ChevronLeft, ChevronRight, CheckCircle2, Heart } from "lucide-react";
+import { verifiedTestimonials } from "../data/testimonialsData";
 
-const Testimonials = () => {
-  const hasReviews = verifiedTestimonials && verifiedTestimonials.length > 0;
+export const Testimonials = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % verifiedTestimonials.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isAutoPlaying]);
+
+  const handleNext = () => {
+    setIsAutoPlaying(false);
+    setCurrentIndex((prev) => (prev + 1) % verifiedTestimonials.length);
+  };
+
+  const handlePrev = () => {
+    setIsAutoPlaying(false);
+    setCurrentIndex(
+      (prev) => (prev - 1 + verifiedTestimonials.length) % verifiedTestimonials.length
+    );
+  };
+
+  const current = verifiedTestimonials[currentIndex];
 
   return (
-    <section id="testimonials" className="py-24 relative bg-[#0B1220] border-t border-slate-800/80">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="testimonials" className="py-16 sm:py-20 border-t border-slate-200/80 relative overflow-hidden">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-blue-950/60 border border-blue-800/60 text-xs font-semibold text-cyan-400">
-            <MessageSquareQuote className="w-3.5 h-3.5" />
-            <span>Client Feedback & Commitments</span>
-          </div>
-
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-white tracking-tight">
-            Client Experience &{" "}
-            <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-sky-300 bg-clip-text text-transparent">
-              Integrity Standard
-            </span>
+        <div className="text-center max-w-2xl mx-auto space-y-2.5 mb-10">
+          <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-[11px] font-bold uppercase tracking-wider border border-blue-200">
+            <Heart className="w-3 h-3 text-rose-500 fill-rose-500" /> Client Stories
+          </span>
+          <h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">
+            Trusted by Founders & Businesses
           </h2>
-
-          <p className="text-slate-300 text-base sm:text-lg leading-relaxed">
-            We hold ourselves to strict standards of transparency, prompt communication, and verified real-world results.
+          <p className="text-xs sm:text-sm text-slate-600 max-w-xl mx-auto">
+            Real feedback from founders and team leads on projects delivered by TechRise.
           </p>
         </div>
 
-        {/* If genuine reviews exist, render them */}
-        {hasReviews ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-            {verifiedTestimonials.map((item) => (
-              <div
-                key={item.id}
-                className="rounded-2xl bg-slate-900/80 border border-slate-800 p-6 flex flex-col justify-between space-y-4"
-              >
-                <div className="space-y-3">
-                  <div className="flex text-amber-400 gap-1">
-                    {[...Array(item.rating || 5)].map((_, i) => (
-                      <Star key={i} className="w-4 h-4 fill-amber-400" />
-                    ))}
-                  </div>
-                  <p className="text-sm text-slate-300 italic leading-relaxed">
-                    "{item.quote}"
-                  </p>
-                </div>
-
-                <div className="pt-4 border-t border-slate-800 flex items-center gap-3">
-                  <div className="w-10 h-10 rounded-full bg-blue-600/20 border border-blue-500/30 flex items-center justify-center font-bold text-cyan-400 text-sm">
-                    {item.clientName.charAt(0)}
-                  </div>
-                  <div>
-                    <div className="text-sm font-bold text-white">{item.clientName}</div>
-                    <div className="text-xs text-slate-400">{item.role} • {item.businessName}</div>
-                  </div>
-                </div>
+        {/* Featured Testimonial Hero Card */}
+        <div className="max-w-4xl mx-auto relative">
+          <div
+            key={current.id || currentIndex}
+            className="bg-white rounded-2xl p-6 sm:p-8 shadow-sm hover:shadow-md border border-slate-200 relative transition-all duration-300"
+          >
+            {/* Top Quote Icon & Stars */}
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2.5 mb-4">
+              <div className="flex items-center gap-1">
+                {[...Array(5)].map((_, i) => (
+                  <Star
+                    key={i}
+                    className="w-4 h-4 text-amber-400 fill-amber-400"
+                  />
+                ))}
+                <span className="ml-2 text-xs font-semibold text-slate-700">
+                  5.0 Verified Review
+                </span>
               </div>
-            ))}
-          </div>
-        ) : (
-          /* Honest Client Testimonials Preview & Guarantee State */
-          <div className="rounded-2xl bg-gradient-to-b from-slate-900/90 to-slate-950/90 border border-slate-800 p-8 sm:p-12 mb-16 text-center max-w-4xl mx-auto shadow-2xl">
-            <div className="w-14 h-14 rounded-2xl bg-blue-600/20 border border-blue-500/30 flex items-center justify-center text-cyan-400 mx-auto mb-6 shadow-inner">
-              <ShieldCheck className="w-7 h-7" />
+
+              <div className="flex items-center gap-2">
+                <span className="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-slate-100 text-blue-700 border border-slate-200">
+                  {current.category}
+                </span>
+                <span className="text-[11px] font-semibold px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3" /> Verified Client
+                </span>
+              </div>
             </div>
 
-            <h3 className="text-xl sm:text-2xl font-bold text-white mb-3">
-              100% Authentic Feedback Only
-            </h3>
-
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed max-w-2xl mx-auto mb-8">
-              We never fabricate fake reviews, stock customer photos, or artificial ratings. Genuine, verified client reviews from our ongoing deliveries will be posted here as authorized by our partners.
+            {/* Testimonial Quote */}
+            <p className="text-xs sm:text-sm md:text-base text-slate-700 font-normal leading-relaxed italic relative pt-1">
+              <Quote className="w-7 h-7 text-blue-500/10 absolute -top-3 -left-2 pointer-events-none" />
+              “{current.quote}”
             </p>
 
-            {/* 3 Core Commitments to Every Client */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-left pt-6 border-t border-slate-800">
-              {clientCommitmentPoints.map((point, idx) => (
-                <div key={idx} className="bg-slate-950/60 p-4 rounded-xl border border-slate-800/80 space-y-1.5">
-                  <div className="flex items-center gap-2 text-xs font-bold text-cyan-300">
-                    <CheckCircle2 className="w-4 h-4 text-cyan-400 shrink-0" />
-                    <span>{point.title}</span>
-                  </div>
-                  <p className="text-[11px] text-slate-400 leading-relaxed">
-                    {point.description}
+            {/* Author Info */}
+            <div className="mt-6 pt-5 border-t border-slate-100 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+              <div className="flex items-center gap-3">
+                <div
+                  className={`w-10 h-10 rounded-xl bg-linear-to-tr ${current.avatarBg || "from-blue-600 to-cyan-500"} flex items-center justify-center font-bold text-white text-xs shadow-xs shrink-0`}
+                >
+                  {current.initials || current.clientName.charAt(0)}
+                </div>
+                <div>
+                  <h4 className="text-xs sm:text-sm font-bold text-slate-900">
+                    {current.clientName}
+                  </h4>
+                  <p className="text-[11px] text-slate-500">
+                    {current.role} • <span className="text-blue-700 font-medium">{current.businessName}</span> ({current.location})
                   </p>
                 </div>
-              ))}
+              </div>
+
+              <div className="text-left sm:text-right text-[11px] text-slate-600">
+                <span className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md bg-slate-50 border border-slate-200 font-mono text-[10px] text-blue-700 font-medium">
+                  ⚡ {current.projectDelivered} • {current.duration}
+                </span>
+              </div>
             </div>
           </div>
-        )}
+
+          {/* Navigation Controls */}
+          <div className="flex items-center justify-between mt-6 max-w-xs mx-auto">
+            <button
+              onClick={handlePrev}
+              className="p-2.5 rounded-full bg-white hover:bg-blue-600 border border-slate-200 hover:border-blue-600 text-slate-700 hover:text-white shadow-xs transition cursor-pointer"
+              aria-label="Previous review"
+            >
+              <ChevronLeft className="w-4 h-4" />
+            </button>
+
+            {/* Indicator Dots */}
+            <div className="flex gap-1.5">
+              {verifiedTestimonials.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => {
+                    setIsAutoPlaying(false);
+                    setCurrentIndex(idx);
+                  }}
+                  className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                    idx === currentIndex
+                      ? "w-6 bg-blue-600"
+                      : "w-2 bg-slate-300 hover:bg-slate-400"
+                  }`}
+                  aria-label={`Go to review ${idx + 1}`}
+                />
+              ))}
+            </div>
+
+            <button
+              onClick={handleNext}
+              className="p-2.5 rounded-full bg-white hover:bg-blue-600 border border-slate-200 hover:border-blue-600 text-slate-700 hover:text-white shadow-xs transition cursor-pointer"
+              aria-label="Next review"
+            >
+              <ChevronRight className="w-4 h-4" />
+            </button>
+          </div>
+        </div>
 
       </div>
     </section>

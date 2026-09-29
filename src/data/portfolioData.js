@@ -29,7 +29,7 @@ export const portfolioProjects = [
       "Mobile-friendly direct WhatsApp reservation button",
       "Smooth scroll navigation and one-tap calling integration"
     ],
-    demoUrl: "https://urbanstayz-gray.vercel.app/", // Replaceable live URL
+    demoUrl: "https://www.cafedosagra.com/", 
     demoStatus: "Client Showcase Demo",
     colorAccent: "#F59E0B",
     badge: "Hospitality & Dining",

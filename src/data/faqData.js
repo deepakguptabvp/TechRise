@@ -1,54 +1,38 @@
-export const faqCategories = [
-  { id: "all", label: "All Questions" },
-  { id: "general", label: "General & Process" },
-  { id: "pricing", label: "Pricing & Payments" },
-  { id: "tech", label: "Technical & Hosting" }
-];
-
 export const faqItems = [
   {
-    category: "general",
+    id: 1,
     question: "How long does it take to design and build a website?",
-    answer: "A standard landing page is typically completed in 4 to 7 business days. A full 4–6 page business website takes around 2 to 3 weeks. Complex web applications with custom APIs or dashboards take 3 to 6 weeks. Timelines depend on prompt feedback and how quickly text and brand materials are shared."
+    answer: "A standard landing page is typically delivered in 4 to 7 business days. A full multi-page business website takes around 10 to 14 days. Web applications with custom dashboards or APIs take 2 to 4 weeks depending on the feature scope."
   },
   {
-    category: "tech",
-    question: "Do you provide domain registration and web hosting?",
-    answer: "We assist you in selecting and purchasing your domain (e.g. from GoDaddy, Namecheap) under your own account so you retain 100% legal ownership. For hosting modern React applications, we deploy on fast global CDN infrastructure (such as Vercel or Cloudflare Pages) which is completely free for standard traffic, saving you hundreds of dollars in traditional server costs."
+    id: 2,
+    question: "How do your payment terms and milestones work?",
+    answer: "We follow a clear 3-step milestone structure: 40% initial deposit to begin architecture and design, 40% upon reviewing the live staging preview, and the remaining 20% after final refinements, deployment, and code handover. We accept UPI, Bank Transfer (NEFT/IMPS), and international wire."
   },
   {
-    category: "pricing",
-    question: "How do your project payment milestones work?",
-    answer: "We work with a transparent milestone structure. For standard projects, it is typically: 40% initial deposit to begin design and architecture, 40% upon review of the working private staging demo, and the remaining 20% after final refinements, live deployment, and repository handover. We accept UPI, IMPS, NEFT, and international wire / PayPal."
+    id: 3,
+    question: "Do you handle domain setup and web hosting?",
+    answer: "Yes. We guide you in registering your domain under your own account so you keep 100% legal ownership. For hosting, we deploy your React site on modern global CDN infrastructure (such as Vercel or Cloudflare), which delivers sub-second speeds worldwide with zero monthly server costs for standard traffic."
   },
   {
-    category: "tech",
-    question: "Can I update the content on my website later?",
-    answer: "Yes! All website text, projects, pricing, and contact details are organized in clean, structured configuration files. We also provide handover guidance showing you how to update information. If you prefer zero hands-on management, our affordable monthly maintenance plan covers all text, image, and banner updates for you."
+    id: 4,
+    question: "How will we communicate during development?",
+    answer: "You work directly with founder & developer Deepak Gupta via WhatsApp, phone, or scheduled Google Meet calls. There are no account managers or intermediaries—you get rapid updates and answers directly from the person coding your site."
   },
   {
-    category: "general",
-    question: "How will we communicate during the development process?",
-    answer: "You will communicate directly with founder Deepak Gupta via WhatsApp, email, or scheduled Google Meet / Zoom calls. You get quick answers directly from the developer building your site, without being bounced around account managers."
+    id: 5,
+    question: "Why choose custom React/Tailwind over WordPress?",
+    answer: "WordPress sites frequently suffer from heavy database queries, bulky plugin vulnerabilities, and slow mobile loading speeds. Handcrafting in React and Tailwind CSS delivers instant page loads (<1 second), superior security, zero plugin maintenance headaches, and 100% design flexibility."
   },
   {
-    category: "general",
-    question: "What happens after the website is launched?",
-    answer: "Every project includes a dedicated 14 to 30-day post-launch warranty. During this period, any technical bugs, browser compatibility quirks, or configuration adjustments are resolved at zero extra charge. You also have the option to continue with our monthly maintenance plan for ongoing updates."
+    id: 6,
+    question: "Can I update website content later?",
+    answer: "Yes. All text, services, portfolio items, and contact details are organized in clean, structured configuration files. We provide a complete handover guide, and also offer lightweight monthly maintenance if you prefer us to manage all updates for you."
   },
   {
-    category: "tech",
-    question: "Can you integrate payment gateways like Razorpay, Cashfree, or Stripe?",
-    answer: "Yes! We have hands-on experience integrating Razorpay, Cashfree, and Stripe checkout buttons, subscription billing, and payment webhooks for e-commerce, donations, or service booking workflows."
-  },
-  {
-    category: "tech",
-    question: "Why do you use React and Vite instead of traditional WordPress?",
-    answer: "Traditional WordPress sites often suffer from heavy database queries, bulky plugin vulnerabilities, and slow mobile loading speeds. By handcrafting websites in modern React with Tailwind CSS and Vite, we achieve instantaneous page loads (<1.5s), superior security, zero plugin subscription bloat, and complete design freedom."
-  },
-  {
-    category: "general",
-    question: "What if I already have a design in Figma or an existing website?",
-    answer: "We frequently convert existing Figma or Adobe XD designs into clean, responsive React and Tailwind code. If you have an existing website that needs a redesign, we can audit your current layout, keep what works, upgrade the visuals, and optimize performance while preserving your SEO rankings."
+    id: 7,
+    question: "What post-launch support and warranty is included?",
+    answer: "Every project includes a dedicated 30-day post-launch technical warranty. Any bugs, mobile responsiveness tweaks, or browser adjustments within this period are resolved promptly at zero additional charge."
   }
 ];
+

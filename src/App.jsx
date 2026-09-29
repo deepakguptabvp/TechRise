@@ -26,7 +26,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-[#0B1220] text-slate-100 flex flex-col selection:bg-blue-600 selection:text-white">
+    <div className="min-h-screen text-slate-800 flex flex-col selection:bg-blue-600 selection:text-white">
       {/* Top Sticky Navigation */}
       <Navbar onOpenConsultModal={() => setConsultModalOpen(true)} />
 

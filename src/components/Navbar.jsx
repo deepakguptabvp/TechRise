@@ -129,8 +129,8 @@ const Navbar = ({ onOpenConsultModal }) => {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-[#0B1220]/90 backdrop-blur-md border-b border-slate-800/80 shadow-lg shadow-black/20 py-3.5"
-          : "bg-transparent py-5"
+          ? "bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-[0_4px_25px_-2px_rgba(15,23,42,0.08)] py-3.5"
+          : "bg-white/70 backdrop-blur-md border-b border-slate-200/50 shadow-[0_2px_15px_-3px_rgba(15,23,42,0.05)] py-4"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -142,29 +142,29 @@ const Navbar = ({ onOpenConsultModal }) => {
             className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg p-1"
             aria-label="TechRise Home"
           >
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-blue-600 via-blue-500 to-cyan-400 p-[1.5px] shadow-md shadow-blue-500/20 group-hover:shadow-blue-500/40 transition-all duration-300">
-              <div className="w-full h-full bg-[#0B1220] rounded-[10px] flex items-center justify-center relative overflow-hidden">
-                {/* Upward Growth Bars & Chevron */}
+            <div className="w-10 h-10 rounded-xl bg-linear-to-tr from-blue-600 via-blue-500 to-cyan-500 p-[1.5px] shadow-sm shadow-blue-500/20 group-hover:shadow-blue-500/40 transition-all duration-300">
+              <div className="w-full h-full bg-white rounded-[10px] flex items-center justify-center relative overflow-hidden">
+                {/* Upward Growth Bars */}
                 <div className="flex items-end gap-1">
-                  <span className="w-1.5 h-3 bg-blue-500/60 rounded-t-sm"></span>
+                  <span className="w-1.5 h-3 bg-blue-300 rounded-t-sm"></span>
                   <span className="w-1.5 h-5 bg-blue-500 rounded-t-sm"></span>
-                  <span className="w-1.5 h-7 bg-cyan-400 rounded-t-sm"></span>
+                  <span className="w-1.5 h-7 bg-cyan-600 rounded-t-sm"></span>
                 </div>
               </div>
             </div>
             <div className="flex flex-col">
-              <span className="text-xl font-extrabold tracking-tight text-white flex items-center gap-1.5">
+              <span className="text-xl font-extrabold tracking-tight text-slate-900 flex items-center gap-1.5">
                 TechRise
-                <span className="text-cyan-400 font-black">.</span>
+                <span className="text-blue-600 font-black">.</span>
               </span>
-              <span className="text-[10px] tracking-wider uppercase font-medium text-slate-400">
+              <span className="text-[10px] tracking-wider uppercase font-semibold text-slate-500">
                 Digital Studio
               </span>
             </div>
           </a>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-1 bg-slate-900/60 border border-slate-800/80 px-3 py-1.5 rounded-full backdrop-blur-md">
+          <nav className="hidden lg:flex items-center gap-1 bg-slate-100/90 border border-slate-200 px-3 py-1.5 rounded-full backdrop-blur-md">
             {siteConfig.navLinks.map((item) => {
               const sectionId = item.href.replace("#", "");
               const isActive = activeSection === sectionId;
@@ -182,8 +182,8 @@ const Navbar = ({ onOpenConsultModal }) => {
                       onClick={(e) => handleNavClick(e, item.href)}
                       className={`text-sm font-medium px-3.5 py-1.5 rounded-full transition-all duration-200 flex items-center gap-1 cursor-pointer ${
                         isActive || servicesDropdownOpen
-                          ? "bg-blue-600 text-white shadow-sm shadow-blue-600/30"
-                          : "text-slate-300 hover:text-white hover:bg-slate-800/60"
+                          ? "bg-blue-600 text-white shadow-xs shadow-blue-600/30"
+                          : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/70"
                       }`}
                     >
                       <span>Services</span>
@@ -196,7 +196,7 @@ const Navbar = ({ onOpenConsultModal }) => {
 
                     {/* Services Dropdown Menu */}
                     {servicesDropdownOpen && (
-                      <div className="absolute top-full left-0 mt-2 w-72 rounded-2xl bg-slate-900/95 backdrop-blur-xl border border-slate-700/80 shadow-2xl p-2.5 space-y-1 animate-in fade-in slide-in-from-top-2 duration-150 z-50">
+                      <div className="absolute top-full left-0 mt-2 w-72 rounded-2xl bg-white/95 backdrop-blur-xl border border-slate-200 shadow-xl p-2.5 space-y-1 animate-in fade-in slide-in-from-top-2 duration-150 z-50">
                         {serviceDropdownItems.map((serv, i) => {
                           const Icon = serv.icon;
                           return (
@@ -204,16 +204,16 @@ const Navbar = ({ onOpenConsultModal }) => {
                               key={i}
                               href={serv.href}
                               onClick={(e) => handleNavClick(e, serv.href)}
-                              className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-slate-800 text-left transition-colors group cursor-pointer"
+                              className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-slate-50 text-left transition-colors group cursor-pointer"
                             >
-                              <div className="w-8 h-8 rounded-lg bg-blue-600/15 border border-blue-500/30 flex items-center justify-center text-cyan-400 group-hover:scale-105 group-hover:bg-blue-600/25 transition-all shrink-0">
+                              <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 group-hover:scale-105 group-hover:bg-blue-100 transition-all shrink-0">
                                 <Icon className="w-4 h-4" />
                               </div>
                               <div>
-                                <div className="text-xs font-bold text-white group-hover:text-cyan-300 transition-colors">
+                                <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
                                   {serv.title}
                                 </div>
-                                <div className="text-[10px] text-slate-400 line-clamp-1">
+                                <div className="text-[10px] text-slate-500 line-clamp-1">
                                   {serv.desc}
                                 </div>
                               </div>
@@ -233,8 +233,8 @@ const Navbar = ({ onOpenConsultModal }) => {
                   onClick={(e) => handleNavClick(e, item.href)}
                   className={`text-sm font-medium px-3.5 py-1.5 rounded-full transition-all duration-200 ${
                     isActive
-                      ? "bg-blue-600 text-white shadow-sm shadow-blue-600/30"
-                      : "text-slate-300 hover:text-white hover:bg-slate-800/60"
+                      ? "bg-blue-600 text-white shadow-xs shadow-blue-600/30"
+                      : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/70"
                   }`}
                 >
                   {item.name}
@@ -247,9 +247,9 @@ const Navbar = ({ onOpenConsultModal }) => {
           <div className="hidden sm:flex items-center gap-3">
             <button
               onClick={onOpenConsultModal}
-              className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-lg shadow-blue-600/25 hover:shadow-blue-600/40 transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer"
+              className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white text-sm font-semibold px-4 py-2.5 rounded-xl shadow-md shadow-blue-600/20 hover:shadow-blue-600/30 transition-all duration-200 transform hover:-translate-y-0.5 cursor-pointer"
             >
-              <span>Get a Free Consultation</span>
+              <span>Get Free Consultation</span>
               <ArrowUpRight className="w-4 h-4" />
             </button>
           </div>
@@ -257,7 +257,7 @@ const Navbar = ({ onOpenConsultModal }) => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="lg:hidden p-2 rounded-xl text-slate-300 hover:text-white bg-slate-800/60 border border-slate-700/60 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
+            className="lg:hidden p-2 rounded-xl text-slate-700 hover:text-slate-900 bg-slate-100 border border-slate-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500"
             aria-expanded={mobileMenuOpen}
             aria-label="Toggle navigation menu"
           >
@@ -268,9 +268,9 @@ const Navbar = ({ onOpenConsultModal }) => {
 
       {/* Mobile Drawer Menu */}
       {mobileMenuOpen && (
-        <div className="fixed inset-0 top-[65px] z-40 bg-[#0B1220]/95 backdrop-blur-xl border-t border-slate-800 lg:hidden flex flex-col justify-between p-6 animate-in fade-in slide-in-from-top-4 duration-200 overflow-y-auto">
+        <div className="fixed inset-0 top-[65px] z-40 bg-white/98 backdrop-blur-xl border-t border-slate-200 lg:hidden flex flex-col justify-between p-6 animate-in fade-in slide-in-from-top-4 duration-200 overflow-y-auto">
           <div className="flex flex-col gap-2">
-            <div className="text-xs uppercase tracking-wider text-slate-400 font-semibold px-3 py-1">
+            <div className="text-xs uppercase tracking-wider text-slate-500 font-semibold px-3 py-1">
               Navigation
             </div>
             
@@ -280,7 +280,7 @@ const Navbar = ({ onOpenConsultModal }) => {
                   <div key={item.name} className="flex flex-col">
                     <button
                       onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                      className="flex items-center justify-between text-lg font-medium text-slate-200 hover:text-cyan-400 px-3 py-2.5 rounded-xl hover:bg-slate-800/60 transition-colors w-full text-left"
+                      className="flex items-center justify-between text-lg font-medium text-slate-800 hover:text-blue-600 px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-colors w-full text-left"
                     >
                       <span>Services</span>
                       <ChevronDown
@@ -291,13 +291,13 @@ const Navbar = ({ onOpenConsultModal }) => {
                     </button>
 
                     {mobileServicesOpen && (
-                      <div className="pl-4 pr-2 py-1 space-y-1 bg-slate-900/60 rounded-xl my-1 border border-slate-800">
+                      <div className="pl-4 pr-2 py-1 space-y-1 bg-slate-50 rounded-xl my-1 border border-slate-200">
                         {serviceDropdownItems.map((serv, i) => (
                           <a
                             key={i}
                             href={serv.href}
                             onClick={(e) => handleNavClick(e, serv.href)}
-                            className="block text-sm text-slate-300 hover:text-cyan-300 py-1.5 px-2 rounded-lg"
+                            className="block text-sm text-slate-600 hover:text-blue-600 py-1.5 px-2 rounded-lg"
                           >
                             {serv.title}
                           </a>
@@ -313,7 +313,7 @@ const Navbar = ({ onOpenConsultModal }) => {
                   key={item.name}
                   href={item.href}
                   onClick={(e) => handleNavClick(e, item.href)}
-                  className="text-lg font-medium text-slate-200 hover:text-cyan-400 px-3 py-2.5 rounded-xl hover:bg-slate-800/60 transition-colors"
+                  className="text-lg font-medium text-slate-800 hover:text-blue-600 px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-colors"
                 >
                   {item.name}
                 </a>
@@ -321,19 +321,19 @@ const Navbar = ({ onOpenConsultModal }) => {
             })}
           </div>
 
-          <div className="pt-6 border-t border-slate-800/80 flex flex-col gap-3">
+          <div className="pt-6 border-t border-slate-200 flex flex-col gap-3">
             <button
               onClick={() => {
                 setMobileMenuOpen(false);
                 onOpenConsultModal();
               }}
-              className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold py-3 px-4 rounded-xl shadow-lg shadow-blue-600/30"
+              className="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold py-3 px-4 rounded-xl shadow-md shadow-blue-600/20"
             >
-              <span>Get a Free Consultation</span>
+              <span>Get Free Consultation</span>
               <ArrowUpRight className="w-4 h-4" />
             </button>
 
-            <div className="text-center text-xs text-slate-400 pt-2">
+            <div className="text-center text-xs text-slate-500 pt-2">
               Direct founder collaboration • Deepak Gupta
             </div>
           </div>
