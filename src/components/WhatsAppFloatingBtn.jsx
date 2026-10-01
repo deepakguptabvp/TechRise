@@ -21,7 +21,7 @@ const WhatsAppFloatingBtn = () => {
             rel="noopener noreferrer"
             className="font-medium text-slate-800 hover:text-emerald-600 transition-colors"
           >
-            Chat directly with us!
+            Chat with us!
           </a>
           <button
             onClick={() => setShowTooltip(false)}

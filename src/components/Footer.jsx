@@ -1,15 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { siteConfig } from "../data/siteConfig";
-import {
-  ArrowUp,
-  Mail,
-  Phone,
-  MessageSquare,
-  Clock,
-  Heart,
-  Globe
-} from "lucide-react";
-import { GithubIcon, LinkedinIcon, WhatsAppIcon } from "./BrandIcons";
+import { ArrowUp, ArrowUpRight, Mail } from "lucide-react";
+import { WhatsAppIcon } from "./BrandIcons";
 
 const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
   const currentYear = new Date().getFullYear();
@@ -184,82 +176,85 @@ const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
             </ul>
           </div>
 
-          {/* Col 4: Contact & Socials */}
+          {/* Col 4: Direct Contact Channels */}
           <div className="lg:col-span-3 space-y-4">
             <h4 className="text-xs font-bold uppercase tracking-wider text-white">
-              Direct Contact
+              Direct Contact Channels
             </h4>
-            <div className="space-y-2.5 text-xs">
+
+            <div className="space-y-3">
+              {/* WhatsApp Card */}
+              <a
+                href={siteConfig.contact.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-start gap-3 p-3 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-emerald-500/50 text-slate-200 transition-all group shadow-xs"
+              >
+                <div className="w-9 h-9 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 group-hover:scale-105 transition-transform">
+                  <WhatsAppIcon className="w-4 h-4 text-emerald-400" />
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-slate-200 group-hover:text-emerald-400 flex items-center gap-1 transition-colors">
+                    <span>Chat on WhatsApp</span>
+                    <ArrowUpRight className="w-3 h-3 text-slate-500 group-hover:text-emerald-400" />
+                  </div>
+                  <div className="text-[11px] text-slate-400 font-mono font-medium mt-0.5">
+                    +91-9643080715
+                  </div>
+                  {/* <div className="text-[10px] text-slate-500 mt-0.5">
+                    Fastest response for quick questions
+                  </div> */}
+                </div>
+              </a>
+
+              {/* Email Card */}
               <a
                 href={`mailto:${siteConfig.contact.email}`}
-                className="flex items-center gap-2 text-slate-300 hover:text-blue-400 transition-colors break-all"
+                className="flex items-start gap-3 p-3 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-blue-500/50 text-slate-200 transition-all group shadow-xs"
               >
-                <Mail className="w-4 h-4 text-blue-400 shrink-0" />
-                <span>{siteConfig.contact.email}</span>
-              </a>
-              <a
-                href={siteConfig.contact.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 text-emerald-400 hover:text-emerald-300 transition-colors"
-              >
-                <WhatsAppIcon className="w-4 h-4 text-emerald-400 shrink-0" />
-                <span>+91-9643080715 (WhatsApp)</span>
-              </a>
-            </div>
-
-            {/* Social Buttons */}
-            <div className="pt-2 flex items-center gap-3">
-              <a
-                href={siteConfig.founder.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 hover:border-slate-700 transition-colors shadow-xs"
-                aria-label="GitHub profile"
-              >
-                <GithubIcon className="w-4 h-4" />
-              </a>
-              <a
-                href={siteConfig.founder.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 hover:border-slate-700 transition-colors shadow-xs"
-                aria-label="LinkedIn profile"
-              >
-                <LinkedinIcon className="w-4 h-4" />
-              </a>
-              <a
-                href={siteConfig.contact.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-emerald-400 hover:text-emerald-300 border border-slate-800 hover:border-emerald-800/60 transition-colors shadow-xs"
-                aria-label="WhatsApp profile"
-              >
-                <WhatsAppIcon className="w-4 h-4" />
+                <div className="w-9 h-9 rounded-lg bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0 group-hover:scale-105 transition-transform">
+                  <Mail className="w-4 h-4 text-blue-400" />
+                </div>
+                <div>
+                  <div className="text-xs font-bold text-slate-200 group-hover:text-blue-400 flex items-center gap-1 transition-colors">
+                    <span>Official Email</span>
+                    <ArrowUpRight className="w-3 h-3 text-slate-500 group-hover:text-blue-400" />
+                  </div>
+                  <div className="text-[11px] text-slate-400 font-mono font-medium mt-0.5 break-all">
+                    {siteConfig.contact.email}
+                  </div>
+                  {/* <div className="text-[10px] text-slate-500 mt-0.5">
+                    For detailed project briefs & RFPs
+                  </div> */}
+                </div>
               </a>
             </div>
           </div>
 
+
+
         </div>
 
         {/* Bottom Copyright & Legal Links */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-center gap-4 text-xs text-slate-500">
           <div>
-            © {currentYear} <strong className="text-slate-300">TechRise</strong>. Founded & Operated by Deepak Gupta. All rights reserved.
+            © {currentYear} <strong className="text-slate-300">TechRise</strong>. Founded by Deepak Gupta. All rights reserved.
           </div>
 
           <div className="flex items-center gap-6">
             <button
               onClick={onOpenPrivacy}
-              className="text-slate-400 hover:text-white transition-colors cursor-pointer"
+              className="text-slate-400 hover:text-white transition-colors cursor-pointer inline-flex items-center gap-1.5"
             >
-              Privacy Policy
+              <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0"></span>
+              <span>Privacy Policy</span>
             </button>
             <button
               onClick={onOpenTerms}
-              className="text-slate-400 hover:text-white transition-colors cursor-pointer"
+              className="text-slate-400 hover:text-white transition-colors cursor-pointer inline-flex items-center gap-1.5"
             >
-              Terms of Engagement
+              <span className="w-1.5 h-1.5 rounded-full bg-slate-500 shrink-0"></span>
+              <span>Terms of Engagement</span>
             </button>
 
             {/* Back to Top */}

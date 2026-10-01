@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { faqItems } from "../data/faqData";
 import {
   HelpCircle,
@@ -16,7 +17,7 @@ const FAQ = () => {
 
   return (
     <section id="faq" className="py-20 sm:py-24 relative border-t border-slate-200/80">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
         <div className="text-center max-w-2xl mx-auto space-y-3 mb-12">
@@ -43,12 +44,13 @@ const FAQ = () => {
             const isOpen = openIndex === idx;
 
             return (
-              <div
+              <motion.div
                 key={faq.id || idx}
-                className={`rounded-2xl border transition-all duration-200 overflow-hidden ${
+                layout
+                className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
                   isOpen
-                    ? "bg-white border-blue-400 shadow-md"
-                    : "bg-white border-slate-200 hover:border-slate-300 shadow-xs"
+                    ? "bg-[#323947] border-blue-500/50 shadow-xl shadow-blue-950/20 text-white"
+                    : "bg-white border-slate-200 hover:border-slate-300 shadow-xs text-slate-900"
                 }`}
               >
                 <button
@@ -57,29 +59,55 @@ const FAQ = () => {
                   aria-expanded={isOpen}
                 >
                   <div className="flex items-center gap-3 pr-2">
-                    <span className="text-xs font-mono font-bold text-blue-600 shrink-0">
+                    <span
+                      className={`text-xs font-mono font-bold shrink-0 px-2 py-0.5 rounded-md transition-colors ${
+                        isOpen
+                          ? "bg-blue-500/20 text-cyan-300 border border-blue-500/30"
+                          : "bg-slate-100 text-blue-600"
+                      }`}
+                    >
                       0{idx + 1}
                     </span>
-                    <span className="text-sm sm:text-base font-bold text-slate-900">
+                    <span
+                      className={`text-sm sm:text-base font-bold transition-colors ${
+                        isOpen ? "text-white" : "text-slate-900"
+                      }`}
+                    >
                       {faq.question}
                     </span>
                   </div>
 
-                  <div
-                    className={`w-7 h-7 rounded-lg bg-slate-100 flex items-center justify-center text-slate-600 shrink-0 transition-transform duration-200 ${
-                      isOpen ? "rotate-180 bg-blue-600 text-white" : ""
+                  <motion.div
+                    animate={{ rotate: isOpen ? 180 : 0 }}
+                    transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                    className={`w-7 h-7 rounded-lg flex items-center justify-center shrink-0 ${
+                      isOpen
+                        ? "bg-white text-blue-600 shadow-sm"
+                        : "bg-slate-100 text-slate-700"
                     }`}
                   >
-                    <ChevronDown className="w-4 h-4" />
-                  </div>
+                    <ChevronDown className="w-4 h-4 stroke-[2.5]" />
+                  </motion.div>
                 </button>
 
-                {isOpen && (
-                  <div className="px-5 sm:px-6 pb-5 pt-1 text-xs sm:text-sm text-slate-600 leading-relaxed border-t border-slate-100 animate-in fade-in duration-150">
-                    {faq.answer}
-                  </div>
-                )}
-              </div>
+                {/* Framer Motion AnimatePresence Accordion Body */}
+                <AnimatePresence initial={false}>
+                  {isOpen && (
+                    <motion.div
+                      key="content"
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-5 sm:px-6 pb-5 pt-2 text-xs sm:text-sm text-slate-300 leading-relaxed border-t border-slate-800/80">
+                        {faq.answer}
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
             );
           })}
         </div>
@@ -91,7 +119,7 @@ const FAQ = () => {
               Have a specific question about your project?
             </h4>
             <p className="text-xs text-slate-600">
-              Get a direct answer from founder Deepak Gupta within a few hours.
+              Get a direct answer from our core team within a few hours.
             </p>
           </div>
 

@@ -1,4 +1,5 @@
 import React from "react";
+import { motion } from "framer-motion";
 import { ArrowRight, Sparkles } from "lucide-react";
 import { WhatsAppIcon } from "./BrandIcons";
 import { siteConfig } from "../data/siteConfig";
@@ -37,7 +38,14 @@ const IdeaSolutionBanner = () => {
 
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-20 md:py-24 relative z-10">
-        <div className="max-w-2xl lg:max-w-3xl space-y-5 sm:space-y-6">
+        <motion.div
+          initial={{ opacity: 0, y: 25 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-60px" }}
+          transition={{ duration: 0.55, ease: [0.16, 1, 0.3, 1] }}
+          className="max-w-2xl lg:max-w-3xl space-y-5 sm:space-y-6"
+        >
+
           
           {/* Subtle Accent Pill */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-teal-500/15 border border-teal-400/30 text-teal-300 text-xs font-semibold tracking-wide uppercase shadow-sm">
@@ -79,7 +87,7 @@ const IdeaSolutionBanner = () => {
             </a>
           </div>
 
-        </div>
+        </motion.div>
       </div>
     </section>
   );
