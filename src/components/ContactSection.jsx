@@ -19,10 +19,10 @@ const serviceOptions = [
 ];
 
 const budgetOptions = [
-  "Under ₹15,000 (< $220)",
-  "₹15,000 – ₹30,000 ($220 – $400)",
-  "₹30,000 – ₹60,000 ($400 – $800)",
-  "₹60,000+ ($800+)",
+  "Under ₹15,000",
+  "₹15,000 – ₹30,000",
+  "₹30,000 – ₹60,000 ",
+  "₹60,000+",
   "Not Sure / Request Recommendation"
 ];
 
@@ -185,44 +185,47 @@ const ContactSection = ({ preselectedService = "", prefilledScope = "" }) => {
         </motion.div>
 
         {/* Centered Proposal Request Form */}
-        <div className="max-w-3xl mx-auto">
-          <div className="rounded-3xl bg-white border border-slate-200 p-6 sm:p-10 shadow-sm hover:shadow-md transition-shadow">
+        <div className="relative max-w-4xl mx-auto group">
+          {/* Ambient border glow shadow */}
+          <div className="absolute -inset-1 bg-gradient-to-r from-blue-600/20 via-cyan-500/20 to-sky-600/20 rounded-[2.2rem] sm:rounded-[2.7rem] blur-xl opacity-70 group-hover:opacity-100 transition duration-700 pointer-events-none" />
 
+          {/* Form Card Container */}
+          <div className="relative rounded-[2rem] sm:rounded-[2.5rem] bg-white/95 backdrop-blur-xl border border-slate-200/90 p-6 sm:p-10 md:p-12 shadow-[0_20px_50px_-15px_rgba(37,99,235,0.12),0_0_0_1px_rgba(226,232,240,0.8)] hover:shadow-[0_25px_60px_-12px_rgba(37,99,235,0.18),0_0_0_1px_rgba(147,197,253,0.5)] transition-all duration-300">
               
               {submitStatus === "success" ? (
                 <div className="py-12 text-center space-y-4 animate-in fade-in duration-300">
-                  <div className="w-16 h-16 rounded-2xl bg-emerald-100 border border-emerald-200 flex items-center justify-center text-emerald-600 mx-auto">
-                    <CheckCircle2 className="w-8 h-8" />
+                  <div className="w-20 h-20 rounded-3xl bg-emerald-50 border border-emerald-200/80 flex items-center justify-center text-emerald-600 mx-auto shadow-md shadow-emerald-500/10">
+                    <CheckCircle2 className="w-10 h-10" />
                   </div>
-                  <h3 className="text-2xl font-bold text-slate-900">
+                  <h3 className="text-2xl sm:text-3xl font-bold text-slate-900">
                     Thank You for Reaching Out!
                   </h3>
-                  <p className="text-sm text-slate-600 max-w-md mx-auto leading-relaxed">
+                  <p className="text-sm sm:text-base text-slate-600 max-w-md mx-auto leading-relaxed">
                     Your project brief has been received. Deepak will review your requirements and reach out within 12 hours with initial insights and proposal options.
                   </p>
                   <div className="pt-4">
                     <button
                       onClick={() => setSubmitStatus(null)}
-                      className="text-xs font-semibold text-blue-600 hover:text-blue-700 bg-slate-100 hover:bg-slate-200 px-4 py-2 rounded-xl transition-colors cursor-pointer"
+                      className="text-xs sm:text-sm font-semibold text-blue-600 hover:text-blue-700 bg-blue-50 hover:bg-blue-100/80 border border-blue-200/60 px-5 py-2.5 rounded-xl transition-all cursor-pointer shadow-xs hover:shadow"
                     >
                       Send Another Message
                     </button>
                   </div>
                 </div>
               ) : (
-                <form onSubmit={handleSubmit} className="space-y-5">
+                <form onSubmit={handleSubmit} className="space-y-6">
                   
                   {submitStatus === "error" && (
-                    <div className="p-4 rounded-xl bg-rose-50 border border-rose-200 text-rose-700 text-xs flex items-center gap-2">
+                    <div className="p-4 rounded-2xl bg-rose-50 border border-rose-200 text-rose-700 text-xs sm:text-sm flex items-center gap-2.5">
                       <AlertCircle className="w-4 h-4 shrink-0" />
                       <span>An error occurred while sending your request. Please message directly on WhatsApp (+91-9643080715) or email us.</span>
                     </div>
                   )}
 
                   {/* Row 1: Name & Business Name */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                      <label className="block text-xs font-semibold text-slate-700 mb-2">
                         Your Full Name <span className="text-rose-500">*</span>
                       </label>
                       <input
@@ -230,17 +233,17 @@ const ContactSection = ({ preselectedService = "", prefilledScope = "" }) => {
                         name="fullName"
                         value={formData.fullName}
                         onChange={handleChange}
-                        placeholder="e.g. Rahul Sharma / Sarah Jenkins"
-                        className={`w-full bg-slate-50 border ${errors.fullName ? "border-rose-400" : "border-slate-200"} focus:border-blue-500 focus:bg-white rounded-xl px-4 py-2.5 text-xs sm:text-sm text-slate-900 placeholder-slate-400 transition-colors`}
+                        placeholder="e.g. Rahul Sharma"
+                        className={`w-full bg-slate-50/70 border ${errors.fullName ? "border-rose-400 ring-2 ring-rose-400/20" : "border-slate-200/90"} focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 rounded-2xl px-4 py-3 text-xs sm:text-sm text-slate-900 placeholder-slate-400 shadow-xs hover:border-slate-300 transition-all outline-none`}
                       />
                       {errors.fullName && (
-                        <p className="text-[11px] text-rose-500 mt-1">{errors.fullName}</p>
+                        <p className="text-[11px] text-rose-500 mt-1.5">{errors.fullName}</p>
                       )}
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                        Business / Company Name <span className="text-slate-400 text-[10px]">(Optional)</span>
+                      <label className="block text-xs font-semibold text-slate-700 mb-2">
+                        Business / Company Name <span className="text-slate-400 text-[10px] font-normal">(Optional)</span>
                       </label>
                       <input
                         type="text"
@@ -248,15 +251,15 @@ const ContactSection = ({ preselectedService = "", prefilledScope = "" }) => {
                         value={formData.businessName}
                         onChange={handleChange}
                         placeholder="e.g. Apex Cafe / Nova Logistics"
-                        className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white rounded-xl px-4 py-2.5 text-xs sm:text-sm text-slate-900 placeholder-slate-400 transition-colors"
+                        className="w-full bg-slate-50/70 border border-slate-200/90 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 rounded-2xl px-4 py-3 text-xs sm:text-sm text-slate-900 placeholder-slate-400 shadow-xs hover:border-slate-300 transition-all outline-none"
                       />
                     </div>
                   </div>
 
                   {/* Row 2: Email & Phone */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                      <label className="block text-xs font-semibold text-slate-700 mb-2">
                         Email Address <span className="text-rose-500">*</span>
                       </label>
                       <input
@@ -265,39 +268,39 @@ const ContactSection = ({ preselectedService = "", prefilledScope = "" }) => {
                         value={formData.email}
                         onChange={handleChange}
                         placeholder="yourname@domain.com"
-                        className={`w-full bg-slate-50 border ${errors.email ? "border-rose-400" : "border-slate-200"} focus:border-blue-500 focus:bg-white rounded-xl px-4 py-2.5 text-xs sm:text-sm text-slate-900 placeholder-slate-400 transition-colors`}
+                        className={`w-full bg-slate-50/70 border ${errors.email ? "border-rose-400 ring-2 ring-rose-400/20" : "border-slate-200/90"} focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 rounded-2xl px-4 py-3 text-xs sm:text-sm text-slate-900 placeholder-slate-400 shadow-xs hover:border-slate-300 transition-all outline-none`}
                       />
                       {errors.email && (
-                        <p className="text-[11px] text-rose-500 mt-1">{errors.email}</p>
+                        <p className="text-[11px] text-rose-500 mt-1.5">{errors.email}</p>
                       )}
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-slate-700 mb-1.5">
-                        Phone / WhatsApp <span className="text-slate-400 text-[10px]">(Optional)</span>
+                      <label className="block text-xs font-semibold text-slate-700 mb-2">
+                        Phone / WhatsApp <span className="text-slate-400 text-[10px] font-normal">(Optional)</span>
                       </label>
                       <input
                         type="tel"
                         name="phone"
                         value={formData.phone}
                         onChange={handleChange}
-                        placeholder="+91 98765 43210"
-                        className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white rounded-xl px-4 py-2.5 text-xs sm:text-sm text-slate-900 placeholder-slate-400 transition-colors"
+                        placeholder="+91"
+                        className="w-full bg-slate-50/70 border border-slate-200/90 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 rounded-2xl px-4 py-3 text-xs sm:text-sm text-slate-900 placeholder-slate-400 shadow-xs hover:border-slate-300 transition-all outline-none"
                       />
                     </div>
                   </div>
 
                   {/* Row 3: Service & Budget */}
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                     <div>
-                      <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                      <label className="block text-xs font-semibold text-slate-700 mb-2">
                         Service Required
                       </label>
                       <select
                         name="service"
                         value={formData.service}
                         onChange={handleChange}
-                        className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-800 transition-colors cursor-pointer"
+                        className="w-full bg-slate-50/70 border border-slate-200/90 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 rounded-2xl px-4 py-3 text-xs sm:text-sm text-slate-800 shadow-xs hover:border-slate-300 transition-all outline-none cursor-pointer"
                       >
                         {serviceOptions.map((opt, i) => (
                           <option key={i} value={opt}>
@@ -308,14 +311,14 @@ const ContactSection = ({ preselectedService = "", prefilledScope = "" }) => {
                     </div>
 
                     <div>
-                      <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                      <label className="block text-xs font-semibold text-slate-700 mb-2">
                         Estimated Budget
                       </label>
                       <select
                         name="budget"
                         value={formData.budget}
                         onChange={handleChange}
-                        className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-800 transition-colors cursor-pointer"
+                        className="w-full bg-slate-50/70 border border-slate-200/90 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 rounded-2xl px-4 py-3 text-xs sm:text-sm text-slate-800 shadow-xs hover:border-slate-300 transition-all outline-none cursor-pointer"
                       >
                         {budgetOptions.map((opt, i) => (
                           <option key={i} value={opt}>
@@ -328,14 +331,14 @@ const ContactSection = ({ preselectedService = "", prefilledScope = "" }) => {
 
                   {/* Row 4: Timeline */}
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                    <label className="block text-xs font-semibold text-slate-700 mb-2">
                       Preferred Timeline
                     </label>
                     <select
                       name="timeline"
                       value={formData.timeline}
                       onChange={handleChange}
-                      className="w-full bg-slate-50 border border-slate-200 focus:border-blue-500 focus:bg-white rounded-xl px-3.5 py-2.5 text-xs sm:text-sm text-slate-800 transition-colors cursor-pointer"
+                      className="w-full bg-slate-50/70 border border-slate-200/90 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 rounded-2xl px-4 py-3 text-xs sm:text-sm text-slate-800 shadow-xs hover:border-slate-300 transition-all outline-none cursor-pointer"
                     >
                       {timelineOptions.map((opt, i) => (
                         <option key={i} value={opt}>
@@ -347,7 +350,7 @@ const ContactSection = ({ preselectedService = "", prefilledScope = "" }) => {
 
                   {/* Row 5: Project Description */}
                   <div>
-                    <label className="block text-xs font-semibold text-slate-700 mb-1.5">
+                    <label className="block text-xs font-semibold text-slate-700 mb-2">
                       Project Requirements & Goals <span className="text-rose-500">*</span>
                     </label>
                     <textarea
@@ -356,19 +359,19 @@ const ContactSection = ({ preselectedService = "", prefilledScope = "" }) => {
                       value={formData.message}
                       onChange={handleChange}
                       placeholder="Tell us about your business, target audience, required features, and any reference websites you like..."
-                      className={`w-full bg-slate-50 border ${errors.message ? "border-rose-400" : "border-slate-200"} focus:border-blue-500 focus:bg-white rounded-xl p-4 text-xs sm:text-sm text-slate-900 placeholder-slate-400 transition-colors leading-relaxed`}
+                      className={`w-full bg-slate-50/70 border ${errors.message ? "border-rose-400 ring-2 ring-rose-400/20" : "border-slate-200/90"} focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 rounded-2xl p-4 text-xs sm:text-sm text-slate-900 placeholder-slate-400 shadow-xs hover:border-slate-300 transition-all outline-none leading-relaxed resize-y`}
                     ></textarea>
                     {errors.message && (
-                      <p className="text-[11px] text-rose-500 mt-1">{errors.message}</p>
+                      <p className="text-[11px] text-rose-500 mt-1.5">{errors.message}</p>
                     )}
                   </div>
 
                   {/* Submit Actions */}
-                  <div className="pt-2 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
+                  <div className="pt-3 flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-4">
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 disabled:opacity-50 text-white font-semibold text-xs sm:text-sm px-6 py-3.5 rounded-xl shadow-md shadow-blue-600/20 hover:shadow-blue-600/30 transition-all cursor-pointer"
+                      className="inline-flex items-center justify-center gap-2.5 bg-gradient-to-r from-blue-600 via-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 disabled:opacity-50 text-white font-semibold text-xs sm:text-sm px-7 py-3.5 rounded-2xl shadow-lg shadow-blue-600/25 hover:shadow-xl hover:shadow-blue-600/35 hover:-translate-y-0.5 active:translate-y-0 transition-all cursor-pointer"
                     >
                       {isSubmitting ? (
                         <span>Submitting Brief...</span>
@@ -384,9 +387,9 @@ const ContactSection = ({ preselectedService = "", prefilledScope = "" }) => {
                       href={generateWhatsAppUrl()}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center justify-center gap-2 text-xs font-semibold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 px-4 py-3 rounded-xl transition-all shadow-xs"
+                      className="inline-flex items-center justify-center gap-2.5 text-xs sm:text-sm font-semibold text-emerald-700 hover:text-emerald-800 bg-emerald-50/80 hover:bg-emerald-100/90 border border-emerald-200/90 px-5 py-3.5 rounded-2xl transition-all shadow-xs hover:shadow-sm hover:-translate-y-0.5 active:translate-y-0"
                     >
-                      <MessageSquare className="w-4 h-4" />
+                      <MessageSquare className="w-4 h-4 text-emerald-600" />
                       <span>Or Send via WhatsApp Instant</span>
                     </a>
                   </div>
@@ -394,7 +397,7 @@ const ContactSection = ({ preselectedService = "", prefilledScope = "" }) => {
                 </form>
               )}
 
-            </div>
+          </div>
         </div>
 
       </div>

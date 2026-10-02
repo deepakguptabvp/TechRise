@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { siteConfig } from "../data/siteConfig";
-import { ArrowUp, ArrowUpRight, Mail } from "lucide-react";
+import { ArrowUp, Mail } from "lucide-react";
 import { WhatsAppIcon } from "./BrandIcons";
 
 const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
@@ -44,7 +44,7 @@ const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
   return (
     <footer className="bg-slate-950 text-slate-400 border-t border-slate-800/80 pt-16 pb-12 relative overflow-hidden">
       {/* Ambient background glow accent */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[250px] bg-gradient-to-b from-blue-600/10 via-cyan-500/5 to-transparent blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[700px] h-[250px] bg-linear-to-b from-blue-600/10 via-cyan-500/5 to-transparent blur-[120px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
@@ -59,30 +59,18 @@ const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
                 e.preventDefault();
                 scrollToTop();
               }}
-              className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg p-1"
+              className="inline-block group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg"
+              aria-label="TechRise Home"
             >
-              <div className="w-10 h-10 rounded-xl bg-linear-to-tr from-blue-600 via-blue-500 to-cyan-500 p-[1.5px] shadow-sm shadow-blue-500/30">
-                <div className="w-full h-full bg-slate-900 rounded-[10px] flex items-center justify-center">
-                  <div className="flex items-end gap-1">
-                    <span className="w-1.5 h-3 bg-blue-400 rounded-t-sm"></span>
-                    <span className="w-1.5 h-5 bg-blue-500 rounded-t-sm"></span>
-                    <span className="w-1.5 h-7 bg-cyan-400 rounded-t-sm"></span>
-                  </div>
-                </div>
-              </div>
-              <div className="flex flex-col">
-                <span className="text-xl font-extrabold tracking-tight text-white flex items-center gap-1.5">
-                  TechRise
-                  <span className="text-blue-500 font-black">.</span>
-                </span>
-                <span className="text-[10px] tracking-wider uppercase font-semibold text-slate-400">
-                  Digital Studio
-                </span>
-              </div>
+              <img
+                src="/techrise-logo.png"
+                alt="TechRise - Elevate Your Digital Presence"
+                className="h-9 sm:h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+              />
             </a>
 
             <p className="text-xs sm:text-sm text-slate-400 leading-relaxed max-w-sm">
-              {siteConfig.tagline} — Independent web development and frontend architecture studio delivering high-performance, conversion-focused websites for startups and businesses worldwide.
+              Independent web development and frontend architecture studio delivering high-performance, conversion-focused websites for startups and businesses worldwide.
             </p>
 
             {/* Live IST Status Box */}
@@ -179,56 +167,32 @@ const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
           {/* Col 4: Direct Contact Channels */}
           <div className="lg:col-span-3 space-y-4">
             <h4 className="text-xs font-bold uppercase tracking-wider text-white">
-              Direct Contact Channels
+              Contacts
             </h4>
 
-            <div className="space-y-3">
-              {/* WhatsApp Card */}
-              <a
-                href={siteConfig.contact.whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-start gap-3 p-3 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-emerald-500/50 text-slate-200 transition-all group shadow-xs"
-              >
-                <div className="w-9 h-9 rounded-lg bg-emerald-500/15 border border-emerald-500/30 flex items-center justify-center text-emerald-400 shrink-0 group-hover:scale-105 transition-transform">
-                  <WhatsAppIcon className="w-4 h-4 text-emerald-400" />
-                </div>
-                <div>
-                  <div className="text-xs font-bold text-slate-200 group-hover:text-emerald-400 flex items-center gap-1 transition-colors">
-                    <span>Chat on WhatsApp</span>
-                    <ArrowUpRight className="w-3 h-3 text-slate-500 group-hover:text-emerald-400" />
-                  </div>
-                  <div className="text-[11px] text-slate-400 font-mono font-medium mt-0.5">
-                    +91-9643080715
-                  </div>
-                  {/* <div className="text-[10px] text-slate-500 mt-0.5">
-                    Fastest response for quick questions
-                  </div> */}
-                </div>
-              </a>
+            <ul className="space-y-2.5 text-xs sm:text-sm">
+              <li>
+                <a
+                  href={siteConfig.contact.whatsappUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2.5 text-slate-400 hover:text-emerald-400 transition-colors group"
+                >
+                  <WhatsAppIcon className="w-4 h-4 text-emerald-400 shrink-0 group-hover:scale-110 transition-transform" />
+                  <span>{siteConfig.contact.phone}</span>
+                </a>
+              </li>
 
-              {/* Email Card */}
-              <a
-                href={`mailto:${siteConfig.contact.email}`}
-                className="flex items-start gap-3 p-3 rounded-xl bg-slate-900/90 border border-slate-800 hover:border-blue-500/50 text-slate-200 transition-all group shadow-xs"
-              >
-                <div className="w-9 h-9 rounded-lg bg-blue-500/15 border border-blue-500/30 flex items-center justify-center text-blue-400 shrink-0 group-hover:scale-105 transition-transform">
-                  <Mail className="w-4 h-4 text-blue-400" />
-                </div>
-                <div>
-                  <div className="text-xs font-bold text-slate-200 group-hover:text-blue-400 flex items-center gap-1 transition-colors">
-                    <span>Official Email</span>
-                    <ArrowUpRight className="w-3 h-3 text-slate-500 group-hover:text-blue-400" />
-                  </div>
-                  <div className="text-[11px] text-slate-400 font-mono font-medium mt-0.5 break-all">
-                    {siteConfig.contact.email}
-                  </div>
-                  {/* <div className="text-[10px] text-slate-500 mt-0.5">
-                    For detailed project briefs & RFPs
-                  </div> */}
-                </div>
-              </a>
-            </div>
+              <li>
+                <a
+                  href={`mailto:${siteConfig.contact.email}`}
+                  className="inline-flex items-center gap-2.5 text-slate-400 hover:text-blue-400 transition-colors group"
+                >
+                  <Mail className="w-4 h-4 text-blue-400 shrink-0 group-hover:scale-110 transition-transform" />
+                  <span className="break-all">{siteConfig.contact.email}</span>
+                </a>
+              </li>
+            </ul>
           </div>
 
 

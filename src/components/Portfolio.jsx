@@ -181,10 +181,10 @@ const Portfolio = () => {
         </motion.div>
 
         {/* Portfolio Guarantee Note */}
-        <div className="mt-14 text-center max-w-2xl mx-auto p-4 rounded-xl bg-white border border-slate-200 text-xs text-slate-600 shadow-xs">
+        {/* <div className="mt-14 text-center max-w-2xl mx-auto p-4 rounded-xl bg-white border border-slate-200 text-xs text-slate-600 shadow-xs">
           <span className="text-slate-900 font-semibold">Integrity Notice: </span>
           All listed projects represent actual frontend architecture, client prototypes, and live platforms delivered with clean React and Tailwind CSS.
-        </div>
+        </div> */}
 
       </div>
 

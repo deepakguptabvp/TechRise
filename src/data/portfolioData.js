@@ -89,7 +89,7 @@ export const portfolioProjects = [
       "High-resolution visual showcase with optimized WebP asset loading",
       "Fast mobile navigation optimized for travelers on the go"
     ],
-    demoUrl: "https://tune-masters-academy.vercel.app/", // Replaceable live URL
+    demoUrl: "https://platinumvoyagestravels.com/", // Replaceable live URL
     demoStatus: "Client Showcase Demo",
     colorAccent: "#3B82F6",
     badge: "Travel & Leisure",

@@ -1,5 +1,5 @@
-import React, { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 import { whyChoosePoints } from "../data/whyChooseData";
 import {
   UserCheck,
@@ -23,50 +23,33 @@ const iconMap = {
   LifeBuoy: LifeBuoy
 };
 
-const slideVariants = {
-  enter: (direction) => ({
-    x: direction > 0 ? 60 : direction < 0 ? -60 : 0,
-    opacity: 0
-  }),
-  center: {
-    x: 0,
-    opacity: 1,
-    transition: {
-      duration: 0.4,
-      ease: [0.16, 1, 0.3, 1]
-    }
-  },
-  exit: (direction) => ({
-    x: direction > 0 ? -60 : 60,
-    opacity: 0,
-    transition: {
-      duration: 0.3,
-      ease: [0.16, 1, 0.3, 1]
-    }
-  })
-};
-
 const WhyChooseUs = () => {
-  const [[page, direction], setPage] = useState([0, 0]);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const totalCards = whyChoosePoints.length;
 
-  const paginate = (newDirection) => {
-    setPage(([prevPage]) => {
-      const nextIndex = (prevPage + newDirection + totalCards) % totalCards;
-      return [nextIndex, newDirection];
-    });
+  useEffect(() => {
+    if (!isAutoPlaying) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % totalCards);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, [isAutoPlaying, totalCards]);
+
+  const handleNext = () => {
+    setIsAutoPlaying(false);
+    setCurrentIndex((prev) => (prev + 1) % totalCards);
+  };
+
+  const handlePrev = () => {
+    setIsAutoPlaying(false);
+    setCurrentIndex((prev) => (prev - 1 + totalCards) % totalCards);
   };
 
   const goToSlide = (targetIndex) => {
-    setPage(([prevPage]) => [targetIndex, targetIndex > prevPage ? 1 : -1]);
+    setIsAutoPlaying(false);
+    setCurrentIndex(targetIndex);
   };
-
-  // Generate 3 visible cards starting from current index
-  const visibleCards = [
-    whyChoosePoints[page % totalCards],
-    whyChoosePoints[(page + 1) % totalCards],
-    whyChoosePoints[(page + 2) % totalCards]
-  ];
 
   return (
     <section id="why-us" className="py-24 relative border-t border-slate-200/80 overflow-hidden">
@@ -78,7 +61,7 @@ const WhyChooseUs = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.5 }}
-          className="text-center max-w-2xl mx-auto space-y-3 mb-16"
+          className="text-center max-w-2xl mx-auto space-y-3 mb-14"
         >
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200 text-xs font-semibold text-emerald-700">
             <Sparkles className="w-3.5 h-3.5 text-emerald-600" />
@@ -97,94 +80,127 @@ const WhyChooseUs = () => {
           </p>
         </motion.div>
 
-        {/* Slider Container with Relative Positioning for Absolute Arrows */}
-        <div className="relative max-w-6xl mx-auto px-2 sm:px-14">
+        {/* Carousel Viewport Container */}
+        <div className="relative max-w-6xl mx-auto px-2 sm:px-8 md:px-12">
           
-          {/* Left Arrow Button */}
+          {/* Fully Rounded Left Arrow Button */}
           <button
-            onClick={() => paginate(-1)}
-            className="absolute -left-2 sm:-left-4 lg:-left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-2xl bg-white hover:bg-blue-600 border border-slate-200 hover:border-blue-600 text-slate-700 hover:text-white flex items-center justify-center transition-all duration-200 shadow-md shadow-slate-200/60 cursor-pointer active:scale-95"
+            onClick={handlePrev}
+            className="absolute -left-2 sm:-left-3 lg:-left-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/95 hover:bg-blue-600 border border-slate-200 hover:border-blue-600 text-slate-700 hover:text-white flex items-center justify-center transition-all duration-200 shadow-lg shadow-slate-200/80 cursor-pointer active:scale-95 backdrop-blur-xs"
             aria-label="Previous item"
           >
             <ChevronLeft className="w-6 h-6" />
           </button>
 
-          {/* Right Arrow Button */}
+          {/* Fully Rounded Right Arrow Button */}
           <button
-            onClick={() => paginate(1)}
-            className="absolute -right-2 sm:-right-4 lg:-right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-2xl bg-white hover:bg-blue-600 border border-slate-200 hover:border-blue-600 text-slate-700 hover:text-white flex items-center justify-center transition-all duration-200 shadow-md shadow-slate-200/60 cursor-pointer active:scale-95"
+            onClick={handleNext}
+            className="absolute -right-2 sm:-right-3 lg:-right-6 top-1/2 -translate-y-1/2 z-30 w-12 h-12 rounded-full bg-white/95 hover:bg-blue-600 border border-slate-200 hover:border-blue-600 text-slate-700 hover:text-white flex items-center justify-center transition-all duration-200 shadow-lg shadow-slate-200/80 cursor-pointer active:scale-95 backdrop-blur-xs"
             aria-label="Next item"
           >
             <ChevronRight className="w-6 h-6" />
           </button>
 
-          {/* 3 Tall Cards Grid Container with Smooth Transition */}
-          <div className="overflow-hidden py-1">
-            <AnimatePresence mode="wait" custom={direction}>
-              <motion.div
-                key={page}
-                custom={direction}
-                variants={slideVariants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"
-              >
-                {visibleCards.map((card, idx) => {
-                  const Icon = iconMap[card.iconName] || Zap;
-                  const cardRealIndex = (page + idx) % totalCards;
+          {/* Left & Right Edge Gradient Fade Overlays */}
+          <div className="hidden md:block absolute left-4 lg:left-8 top-0 bottom-0 w-20 lg:w-28 bg-gradient-to-r from-white via-white/80 to-transparent pointer-events-none z-20" />
+          <div className="hidden md:block absolute right-4 lg:right-8 top-0 bottom-0 w-20 lg:w-28 bg-gradient-to-l from-white via-white/80 to-transparent pointer-events-none z-20" />
 
-                  return (
-                    <div
-                      key={`${card.title}-${cardRealIndex}`}
-                      className="rounded-2xl bg-white border border-slate-200 hover:border-blue-400 p-7 sm:p-8 flex flex-col justify-between min-h-[350px] transition-all duration-300 shadow-sm hover:shadow-xl hover:shadow-blue-500/5 hover:-translate-y-1"
-                    >
-                      <div className="space-y-6">
-                        {/* Card Top: Icon & Feature Badge */}
-                        <div className="flex items-center justify-between">
-                          <div className="w-14 h-14 rounded-2xl bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 shadow-xs">
-                            <Icon className="w-7 h-7" />
-                          </div>
+          {/* Carousel Stage */}
+          <div className="relative w-full h-[400px] sm:h-[410px] flex items-center justify-center overflow-hidden py-4">
+            {whyChoosePoints.map((card, idx) => {
+              // Calculate circular offset relative to currentIndex (-1: Left, 0: Center, 1: Right)
+              let offset = idx - currentIndex;
+              if (offset > totalCards / 2) offset -= totalCards;
+              if (offset <= -totalCards / 2) offset += totalCards;
 
-                          <span className="text-xs font-mono font-semibold px-2.5 py-1 rounded-full bg-white text-blue-700 border border-slate-200 shadow-xs">
-                            0{cardRealIndex + 1} / 0{totalCards}
-                          </span>
-                        </div>
+              const Icon = iconMap[card.iconName] || Zap;
+              const isCenter = offset === 0;
+              const isNeighbor = Math.abs(offset) === 1;
 
-                        {/* Card Title */}
-                        <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
-                          {card.title}
-                        </h3>
-
-                        {/* Description */}
-                        <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
-                          {card.description}
-                        </p>
+              return (
+                <motion.div
+                  key={card.title}
+                  className={`absolute w-[86%] sm:w-[340px] md:w-[350px] lg:w-[370px] min-h-[350px] sm:min-h-[365px] rounded-2xl p-6 sm:p-8 flex flex-col justify-between transition-colors duration-300 select-none ${
+                    isCenter
+                      ? "bg-white border-2 border-blue-500 shadow-xl shadow-blue-500/10 ring-4 ring-blue-500/10 cursor-default"
+                      : isNeighbor
+                      ? "bg-white/85 border border-slate-200/90 shadow-xs hover:border-blue-300 cursor-pointer"
+                      : "bg-white/60 border border-slate-200 pointer-events-none"
+                  }`}
+                  animate={{
+                    x: `calc(${offset * 106}% + ${offset * 16}px)`,
+                    scale: isCenter ? 1 : isNeighbor ? 0.92 : 0.8,
+                    opacity: isCenter ? 1 : isNeighbor ? 0.42 : 0,
+                    zIndex: isCenter ? 20 : isNeighbor ? 10 : 0,
+                  }}
+                  whileHover={isNeighbor ? { opacity: 0.75, scale: 0.95 } : {}}
+                  transition={{
+                    type: "spring",
+                    stiffness: 260,
+                    damping: 26,
+                    mass: 0.85
+                  }}
+                  onClick={() => {
+                    if (offset === -1) handlePrev();
+                    if (offset === 1) handleNext();
+                  }}
+                >
+                  <div className="space-y-5">
+                    {/* Card Top: Icon & Feature Badge */}
+                    <div className="flex items-center justify-between">
+                      <div
+                        className={`w-12 sm:w-14 h-12 sm:h-14 rounded-2xl flex items-center justify-center shadow-xs transition-colors ${
+                          isCenter
+                            ? "bg-blue-50 text-blue-600 border border-blue-100"
+                            : "bg-slate-100 text-slate-500 border border-slate-200/80"
+                        }`}
+                      >
+                        <Icon className="w-6 sm:w-7 h-6 sm:h-7" />
                       </div>
 
-                      {/* Card Bottom: Commitment Bar */}
-                      <div className="pt-5 mt-6 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500 font-medium">
-                        <span>Standard Delivery</span>
-                        <span className="text-emerald-600 flex items-center gap-1.5 font-semibold">
-                          <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
-                          <span>Guaranteed</span>
-                        </span>
-                      </div>
+                      <span
+                        className={`text-xs font-mono font-semibold px-2.5 py-1 rounded-full border shadow-xs transition-colors ${
+                          isCenter
+                            ? "bg-blue-50 text-blue-700 border-blue-200"
+                            : "bg-slate-100 text-slate-500 border-slate-200"
+                        }`}
+                      >
+                        0{idx + 1} / 0{totalCards}
+                      </span>
                     </div>
-                  );
-                })}
-              </motion.div>
-            </AnimatePresence>
+
+                    {/* Card Title */}
+                    <h3 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">
+                      {card.title}
+                    </h3>
+
+                    {/* Description */}
+                    <p className="text-slate-600 text-xs sm:text-sm leading-relaxed">
+                      {card.description}
+                    </p>
+                  </div>
+
+                  {/* Card Bottom: Commitment Bar */}
+                  <div className="pt-4 mt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-500 font-medium">
+                    <span>Standard Delivery</span>
+                    <span className="text-emerald-600 flex items-center gap-1.5 font-semibold">
+                      <CheckCircle2 className="w-4 h-4 text-emerald-500 shrink-0" />
+                      <span>Guaranteed</span>
+                    </span>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
 
           {/* Bottom Pagination Dots */}
-          <div className="flex items-center justify-center gap-2 mt-8">
+          <div className="flex items-center justify-center gap-2 mt-6">
             {whyChoosePoints.map((_, idx) => (
               <button
                 key={idx}
                 onClick={() => goToSlide(idx)}
                 className={`h-2.5 rounded-full transition-all duration-300 cursor-pointer ${
-                  page === idx
+                  currentIndex === idx
                     ? "w-8 bg-blue-600"
                     : "w-2.5 bg-slate-300 hover:bg-slate-400"
                 }`}
@@ -199,6 +215,5 @@ const WhyChooseUs = () => {
     </section>
   );
 };
-
 
 export default WhyChooseUs;

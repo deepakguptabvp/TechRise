@@ -1,57 +1,15 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import { siteConfig } from "../data/siteConfig";
 import {
   Menu,
   X,
-  ArrowUpRight,
-  ChevronDown,
-  Globe,
-  Zap,
-  Palette,
-  Sparkles,
-  ShieldCheck
+  ArrowUpRight
 } from "lucide-react";
-
-const serviceDropdownItems = [
-  {
-    title: "Business Websites",
-    desc: "Multi-page modern web development",
-    icon: Globe,
-    href: "#services"
-  },
-  {
-    title: "Landing Pages",
-    desc: "High-converting single page experiences",
-    icon: Zap,
-    href: "#services"
-  },
-  {
-    title: "UI/UX Design",
-    desc: "Custom Figma UI/UX & design systems",
-    icon: Palette,
-    href: "#services"
-  },
-  {
-    title: "Website Redesign",
-    desc: "Upgrade slow or outdated websites",
-    icon: Sparkles,
-    href: "#services"
-  },
-  {
-    title: "Maintenance & Support",
-    desc: "Regular updates & priority technical care",
-    icon: ShieldCheck,
-    href: "#services"
-  }
-];
 
 const Navbar = ({ onOpenConsultModal }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [servicesDropdownOpen, setServicesDropdownOpen] = useState(false);
-  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
-  const dropdownTimeoutRef = useRef(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -85,7 +43,6 @@ const Navbar = ({ onOpenConsultModal }) => {
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
         setMobileMenuOpen(false);
-        setServicesDropdownOpen(false);
       }
     };
     window.addEventListener("keydown", handleKeyDown);
@@ -104,7 +61,6 @@ const Navbar = ({ onOpenConsultModal }) => {
   const handleNavClick = (e, href) => {
     if (e) e.preventDefault();
     setMobileMenuOpen(false);
-    setServicesDropdownOpen(false);
     const targetId = href.replace("#", "");
     const targetEl = document.getElementById(targetId);
     if (targetEl) {
@@ -112,17 +68,6 @@ const Navbar = ({ onOpenConsultModal }) => {
     } else if (href === "#" || href === "#home") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     }
-  };
-
-  const handleDropdownEnter = () => {
-    if (dropdownTimeoutRef.current) clearTimeout(dropdownTimeoutRef.current);
-    setServicesDropdownOpen(true);
-  };
-
-  const handleDropdownLeave = () => {
-    dropdownTimeoutRef.current = setTimeout(() => {
-      setServicesDropdownOpen(false);
-    }, 150);
   };
 
   return (
@@ -139,28 +84,14 @@ const Navbar = ({ onOpenConsultModal }) => {
           <a
             href="#"
             onClick={(e) => handleNavClick(e, "#home")}
-            className="flex items-center gap-3 group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg p-1"
+            className="inline-block group focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 rounded-lg"
             aria-label="TechRise Home"
           >
-            <div className="w-10 h-10 rounded-xl bg-linear-to-tr from-blue-600 via-blue-500 to-cyan-500 p-[1.5px] shadow-sm shadow-blue-500/20 group-hover:shadow-blue-500/40 transition-all duration-300">
-              <div className="w-full h-full bg-white rounded-[10px] flex items-center justify-center relative overflow-hidden">
-                {/* Upward Growth Bars */}
-                <div className="flex items-end gap-1">
-                  <span className="w-1.5 h-3 bg-blue-300 rounded-t-sm"></span>
-                  <span className="w-1.5 h-5 bg-blue-500 rounded-t-sm"></span>
-                  <span className="w-1.5 h-7 bg-cyan-600 rounded-t-sm"></span>
-                </div>
-              </div>
-            </div>
-            <div className="flex flex-col">
-              <span className="text-xl font-extrabold tracking-tight text-slate-900 flex items-center gap-1.5">
-                TechRise
-                <span className="text-blue-600 font-black">.</span>
-              </span>
-              <span className="text-[10px] tracking-wider uppercase font-semibold text-slate-500">
-                Digital Studio
-              </span>
-            </div>
+            <img
+              src="/techrise-logo-dark.png"
+              alt="TechRise - Elevate Your Digital Presence"
+              className="h-8 sm:h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+            />
           </a>
 
           {/* Desktop Navigation */}
@@ -168,63 +99,6 @@ const Navbar = ({ onOpenConsultModal }) => {
             {siteConfig.navLinks.map((item) => {
               const sectionId = item.href.replace("#", "");
               const isActive = activeSection === sectionId;
-              const isServices = item.name === "Services";
-
-              if (isServices) {
-                return (
-                  <div
-                    key={item.name}
-                    className="relative"
-                    onMouseEnter={handleDropdownEnter}
-                    onMouseLeave={handleDropdownLeave}
-                  >
-                    <button
-                      onClick={(e) => handleNavClick(e, item.href)}
-                      className={`text-sm font-medium px-3.5 py-1.5 rounded-full transition-all duration-200 flex items-center gap-1 cursor-pointer ${
-                        isActive || servicesDropdownOpen
-                          ? "bg-blue-600 text-white shadow-xs shadow-blue-600/30"
-                          : "text-slate-600 hover:text-slate-900 hover:bg-slate-200/70"
-                      }`}
-                    >
-                      <span>Services</span>
-                      <ChevronDown
-                        className={`w-3.5 h-3.5 transition-transform duration-200 ${
-                          servicesDropdownOpen ? "rotate-180" : ""
-                        }`}
-                      />
-                    </button>
-
-                    {/* Services Dropdown Menu */}
-                    {servicesDropdownOpen && (
-                      <div className="absolute top-full left-0 mt-2 w-72 rounded-2xl bg-white/95 backdrop-blur-xl border border-slate-200 shadow-xl p-2.5 space-y-1 animate-in fade-in slide-in-from-top-2 duration-150 z-50">
-                        {serviceDropdownItems.map((serv, i) => {
-                          const Icon = serv.icon;
-                          return (
-                            <a
-                              key={i}
-                              href={serv.href}
-                              onClick={(e) => handleNavClick(e, serv.href)}
-                              className="flex items-center gap-3 p-2.5 rounded-xl hover:bg-slate-50 text-left transition-colors group cursor-pointer"
-                            >
-                              <div className="w-8 h-8 rounded-lg bg-blue-50 border border-blue-200 flex items-center justify-center text-blue-600 group-hover:scale-105 group-hover:bg-blue-100 transition-all shrink-0">
-                                <Icon className="w-4 h-4" />
-                              </div>
-                              <div>
-                                <div className="text-xs font-bold text-slate-900 group-hover:text-blue-600 transition-colors">
-                                  {serv.title}
-                                </div>
-                                <div className="text-[10px] text-slate-500 line-clamp-1">
-                                  {serv.desc}
-                                </div>
-                              </div>
-                            </a>
-                          );
-                        })}
-                      </div>
-                    )}
-                  </div>
-                );
-              }
 
               return (
                 <a
@@ -274,51 +148,16 @@ const Navbar = ({ onOpenConsultModal }) => {
               Navigation
             </div>
             
-            {siteConfig.navLinks.map((item) => {
-              if (item.name === "Services") {
-                return (
-                  <div key={item.name} className="flex flex-col">
-                    <button
-                      onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                      className="flex items-center justify-between text-lg font-medium text-slate-800 hover:text-blue-600 px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-colors w-full text-left"
-                    >
-                      <span>Services</span>
-                      <ChevronDown
-                        className={`w-4 h-4 transition-transform ${
-                          mobileServicesOpen ? "rotate-180" : ""
-                        }`}
-                      />
-                    </button>
-
-                    {mobileServicesOpen && (
-                      <div className="pl-4 pr-2 py-1 space-y-1 bg-slate-50 rounded-xl my-1 border border-slate-200">
-                        {serviceDropdownItems.map((serv, i) => (
-                          <a
-                            key={i}
-                            href={serv.href}
-                            onClick={(e) => handleNavClick(e, serv.href)}
-                            className="block text-sm text-slate-600 hover:text-blue-600 py-1.5 px-2 rounded-lg"
-                          >
-                            {serv.title}
-                          </a>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                );
-              }
-
-              return (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  onClick={(e) => handleNavClick(e, item.href)}
-                  className="text-lg font-medium text-slate-800 hover:text-blue-600 px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-colors"
-                >
-                  {item.name}
-                </a>
-              );
-            })}
+            {siteConfig.navLinks.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                onClick={(e) => handleNavClick(e, item.href)}
+                className="text-lg font-medium text-slate-800 hover:text-blue-600 px-3 py-2.5 rounded-xl hover:bg-slate-50 transition-colors"
+              >
+                {item.name}
+              </a>
+            ))}
           </div>
 
           <div className="pt-6 border-t border-slate-200 flex flex-col gap-3">

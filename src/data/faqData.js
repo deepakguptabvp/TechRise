@@ -29,10 +29,10 @@ export const faqItems = [
     question: "Can I update website content later?",
     answer: "Yes. All text, services, portfolio items, and contact details are organized in clean, structured configuration files. We provide a complete handover guide, and also offer lightweight monthly maintenance if you prefer us to manage all updates for you."
   },
-  {
-    id: 7,
-    question: "What post-launch support and warranty is included?",
-    answer: "Every project includes a dedicated 30-day post-launch technical warranty. Any bugs, mobile responsiveness tweaks, or browser adjustments within this period are resolved promptly at zero additional charge."
-  }
+  // {
+  //   id: 7,
+  //   question: "What post-launch support and warranty is included?",
+  //   answer: "Every project includes a dedicated 30-day post-launch technical warranty. Any bugs, mobile responsiveness tweaks, or browser adjustments within this period are resolved promptly at zero additional charge."
+  // }
 ];
 
