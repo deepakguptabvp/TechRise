@@ -25,6 +25,17 @@ const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
     return () => clearInterval(interval);
   }, []);
 
+  const [showMobileTop, setShowMobileTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowMobileTop(window.scrollY > 300);
+    };
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -221,14 +232,18 @@ const Footer = ({ onOpenPrivacy, onOpenTerms, onSelectService }) => {
               <span>Terms of Engagement</span>
             </button>
 
-            {/* Back to Top */}
+            {/* Back to Top Button (Floating above WhatsApp on mobile, inline on desktop) */}
             <button
               onClick={scrollToTop}
-              className="p-2 rounded-lg bg-slate-900 hover:bg-slate-800 text-slate-300 hover:text-white border border-slate-800 hover:border-slate-700 transition-colors flex items-center gap-1.5 cursor-pointer shadow-xs"
+              className={`fixed sm:static bottom-[86px] sm:bottom-auto right-6 sm:right-auto z-40 sm:z-auto w-13 h-13 sm:w-auto sm:h-auto sm:px-2.5 sm:py-2 rounded-2xl sm:rounded-lg bg-slate-900/95 sm:bg-slate-900 hover:bg-slate-800 text-white sm:text-slate-300 sm:hover:text-white border border-slate-700/80 sm:border-slate-800 hover:border-slate-600 sm:hover:border-slate-700 shadow-xl sm:shadow-xs flex items-center justify-center gap-1.5 cursor-pointer active:scale-95 transition-all duration-200 ${
+                showMobileTop
+                  ? "opacity-100 scale-100"
+                  : "opacity-0 scale-90 pointer-events-none sm:opacity-100 sm:scale-100 sm:pointer-events-auto"
+              }`}
               aria-label="Back to top"
             >
-              <span>Top</span>
-              <ArrowUp className="w-3.5 h-3.5" />
+              <span className="hidden sm:inline">Top</span>
+              <ArrowUp className="w-5 h-5 sm:w-3.5 sm:h-3.5 text-white sm:text-slate-300" />
             </button>
           </div>
         </div>
